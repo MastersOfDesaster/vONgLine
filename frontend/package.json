@@ -1,0 +1,33 @@
+{
+  "name": "vongline-frontend",
+  "description": "Frontend des vONgline, ein Webinterpeter des Vongpilers.",
+  "version": "1.0.0",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MastersOfDesaster/vONgLine.git"
+  },
+  "author": "",
+  "license": "HE BEER-WARE LICENSE",
+  "bugs": {
+    "url": "https://github.com/MastersOfDesaster/vONgLine.git/issues"
+  },
+  "homepage": "https://github.com/MastersOfDesaster/vONgLine.git#readme",
+  "devDependencies": {
+    "gulp-typedoc": "^2.2.0",
+    "jasmine": "^2.9.0"
+  },
+  "dependencies": {
+    "@types/jasmine": "^2.8.6",
+    "@types/winston": "^2.3.7",
+    "gulp": "^3.9.1",
+    "gulp-cli": "^2.0.1",
+    "tslint": "^5.9.1",
+    "typedoc": "^0.10.0",
+    "winston": "^2.3.0"
+  }
+}

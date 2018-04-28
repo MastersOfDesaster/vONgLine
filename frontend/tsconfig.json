@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+  
+    "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "declaration": true,                   /* Generates corresponding '.d.ts' file. */
+    "outDir": "./dist",                        /* Redirect output structure to the directory. */
+    "strict": true,                      /* Enable all strict type-checking options. */
+    "sourceMap": true,                 //generiert map Datei zum Debugging
+    "inlineSources": true,
+    "target": "es2015",
+    "types": [
+      "jasmine"
+    ],
+  
+  "noEmitOnError": true, //Kein kompilieren bei Fehlern
+  "noImplicitAny": true, //Es wird nicht automatisch any gewählt, falls kein Typ angegeben ist
+  "strictNullChecks": true, //Fehler wenn null Variablen verwendet werden
+  "noUnusedParameters": false //Fehler bei nicht genutzten Parametern
+ 
+  }
+}
