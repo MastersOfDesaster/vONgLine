@@ -5,14 +5,15 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "start": "node ./dist/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MastersOfDesaster/vONgLine.git"
   },
   "author": "",
-  "license": "HE BEER-WARE LICENSE",
+  "license": "THE BEER-WARE LICENSE",
   "bugs": {
     "url": "https://github.com/MastersOfDesaster/vONgLine.git/issues"
   },
@@ -22,9 +23,12 @@
     "jasmine": "^2.9.0"
   },
   "dependencies": {
+    "@types/express": "^4.11.1",
     "@types/jasmine": "^2.8.6",
+    "@types/node": "^10.0.6",
     "@types/winston": "^2.3.7",
-    "gulp": "^3.9.1",
+    "express": "^4.16.3",
+    "gulp": "^4.0.0",
     "gulp-cli": "^2.0.1",
     "tslint": "^5.9.1",
     "typedoc": "^0.10.0",
