@@ -4,12 +4,24 @@ import { DiffEditorModel, NgxEditorModel } from '../platform/editor';
 @Component({
   selector: 'app-root',
   template: `
-    <h1>vONgLINE</h1>
+    <h1>Editor</h1>
+    <button (click)="updateOptions()">Change Language</button>
+    <button (click)="code = ''; codeInput=''">Set Value To Empty String</button>
+    <button (click)="code = null; codeInput=null">Set Value To Null</button>
+    <button (click)="code = undefined; codeInput=undefined">Set Value To undefined</button>
+    <button (click)="showMultiple = !showMultiple">{{showMultiple ? 'Hide' : 'Show'}} Multiple Editor</button>
 
     <ngx-monaco-editor [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
     <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
-
+    
     <pre>{{code | json}}</pre>
+
+    <h1>Diff Editor</h1>
+    <button (click)="updateDiffModel()">Update Models</button>
+    <ngx-monaco-diff-editor [options]="options" [originalModel]="originalModel" [modifiedModel]="modifiedModel"
+                            (onInit)="onInit($event)"></ngx-monaco-diff-editor>
+
+    <ngx-monaco-editor [options]="options" [model]="model"></ngx-monaco-editor>
   `,
   styles: []
 })
@@ -24,23 +36,9 @@ export class AppComponent {
   cssCode = `.my-class {
   color: red;
 }`;
-  jsCode = `was ist das für 1 code?
-  i bims 1 zal 💪 gönn dir 0!!!
-  i bims 1 isso lauch gönn dir yup!!!
-
-  gieb "Gib d1 umfang vong bizeps her:" her?
-  💪 gönn dir 1gabe!!!
-
-  lauch gönn dir was ist das für 1 isweniga vong 💪, 44 her?
-
-  bist du lauch? yup
-      gieb "G pumpen du Lauch!" her?
-  real rap
-
-  bist du lauch? nope
-      gieb "Du bist k1 Lauch!" her?
-  real rap
-1 n🍦r!!!`;
+  jsCode = `function hello() {
+	 alert('Hello world!');
+}`;
 
   originalModel: DiffEditorModel = {
     code: 'heLLo world!',
