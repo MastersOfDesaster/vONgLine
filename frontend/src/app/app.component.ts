@@ -3,15 +3,8 @@ import { DiffEditorModel, NgxEditorModel } from '../platform/editor';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <h1>vONgLINE</h1>
-
-    <ngx-monaco-editor [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
-    <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
-
-    <pre>{{code | json}}</pre>
-  `,
-  styles: []
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   editor: any;
