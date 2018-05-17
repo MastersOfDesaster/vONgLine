@@ -1,6 +1,10 @@
 <h1>vONgLINE</h1>
 
-    <ngx-monaco-editor [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
-    <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
+    <div class="input">
+        <ngx-monaco-editor [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
+        <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
+    </div>
 
-    <pre>{{code | json}}</pre>
+    <div class="output">
+        <pre>{{code | json}}</pre>
+    </div>

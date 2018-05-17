@@ -23,7 +23,7 @@
                 "output": "/assets/monaco"
               }
             ],
-            "styles": [],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {

@@ -1,1 +1,12 @@
-body {background-color: coral;}
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre-wrap;
+    margin: 1em 0;
+    color: white;
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+}
