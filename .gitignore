@@ -7,6 +7,8 @@
 /frontend/tmp
 /backend/out-tsc
 /frontend/out-tsc
+/backend/java
+/backend/tmp
 
 # dependencies
 /backend/node_modules
