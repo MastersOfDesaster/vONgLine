@@ -22,6 +22,8 @@ export class AppComponent {
     theme: 'vs-dark'
   };
 
+  sessionId: number;
+
   result: string;
   code = `was ist das für 1 code?
   i bims 1 zal lauch1 gönn dir 0!!!
@@ -54,9 +56,10 @@ export class AppComponent {
   }
 
   sendSourceCode(){
-      const req = this.http.post(url, {Code:this.code}).subscribe(res => {
+      const req = this.http.post(url, {SessionId: this.sessionId, Code:this.code}).subscribe(res => {
           const buffer = JSON.parse(JSON.stringify(res));
           this.result = buffer.StdoutC + "\n" + buffer.StdoutR;
+          this.sessionId = buffer.SessionId;
         },
         err => {
           this.result = "Error";

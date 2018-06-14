@@ -20,25 +20,32 @@ app.post("/vongline", (request, response) => {
           .send("No string as name");
 
     } else if (request.body !== null) {
-        const filename: number = new Date().getTime();
+        let sessionId: number;
+        if (request.body.SessionId !== undefined) {
+          sessionId = request.body.SessionId;
+
+        } else {
+          sessionId = new Date().getTime();
+        }
+        log.debug("SessionId: " + sessionId);
         log.debug(request.body.Code);
 
-        fs.writeFile("tmp/" + filename + ".vsh", request.body.Code.toString(), (err) => {
+        fs.writeFile("tmp/" + sessionId + ".vsh", request.body.Code.toString(), (err) => {
             if (err) {
                 log.error(err.toString());
             }
-            log.info(filename + ".vsh saved");
+            log.info(sessionId + ".vsh saved");
 
             const exec = require("child_process").exec;
-            exec("java -jar ./java/vongc.jar tmp/" + filename + ".vsh",
+            exec("java -jar ./java/vongc.jar tmp/" + sessionId + ".vsh",
             (errorC: any, stdoutC: any, stderrC: any) => {
                 log.info("vongc.jar stdout: " + stdoutC);
                 if (stdoutC !== null) {
-                    exec("java -jar ./java/vong.jar tmp/" + filename + ".vch",
+                    exec("java -jar ./java/vong.jar tmp/" + sessionId + ".vch",
                     (errorR: any, stdoutR: any, stderrR: any) => {
                         log.info("vong.jar stdout: " + stdoutR);
                         response.json({
-                            SessionId: filename,
+                            SessionId: sessionId,
                             StdoutC: stdoutC,
                             StdoutR: stdoutR,
                           },
