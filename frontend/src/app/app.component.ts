@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { DiffEditorModel, NgxEditorModel } from '../platform/editor';
 import { HttpClient } from '@angular/common/http';
 
-const url:string = "http://localhost:3000/vongline/";
+const url:string = "http://localhost:3000/vongline";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
 
   constructor(private http: HttpClient){
@@ -52,10 +53,7 @@ export class AppComponent {
   }
 
   sendSourceCode(){
-      this.result = this.code;
-      const sourceCode = JSON.parse('{"Code":"' + this.code +'"}');
-      this.result = sourceCode;
-      const req = this.http.post(url, sourceCode).subscribe(res => {
+      const req = this.http.post(url, {Code:this.code}).subscribe(res => {
           this.result = JSON.stringify(res);
         },
         err => {
@@ -76,3 +74,11 @@ export class AppComponent {
     // editor.executeEdits("my-source", [op]);
   }
 }
+
+export class sourceCode {
+  Code: String;
+
+  constructor(C) {
+    this.Code = "";
+  }
+};
