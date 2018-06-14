@@ -20,7 +20,7 @@ app.post("/vongline", (request, response) => {
           .send("No string as name");
 
     } else if (request.body !== null) {
-        const filename = Math.floor(Math.random() * (0 - 100000 + 1)) + 100000;
+        const filename: number = new Date().getTime();
         log.debug(request.body);
 
         fs.writeFile("tmp/" + filename + ".vsh", request.body.Code.toString(), (err) => {

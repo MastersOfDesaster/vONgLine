@@ -10,3 +10,44 @@ pre {
 h1 {
     text-align: center;
 }
+
+div.logo {
+  text-align: left;
+  color: white;
+  background-color: black;
+  width: 200px;
+  right: 10px;
+  height: 40px;
+  position: absolute;
+  padding: 10px;
+  top: 10px;
+  margin-top: 0px;
+  margin-right: 20px;
+}
+
+div.vongline {
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+div.red{
+
+  width: 190px;
+  height: 5px;
+  top: 20px;
+  background-color: red;
+}
+
+div.input{
+  padding: 10px;
+  top: 0px;
+  margin-top: 80px;
+  margin-right: 10px;
+
+
+}
+
+div.output {
+  padding: 10px;
+  margin-right: 10px;
+}

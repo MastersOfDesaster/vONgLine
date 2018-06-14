@@ -1,12 +1,12 @@
-<h1>vONgLINE</h1>
-
-    <div class="input">
-        <ngx-monaco-editor [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
-        <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
-    </div>
-
+<div class="logo">
+    <div class="vongline">vONgLINE</div>
+    <div class="red"></div>
+</div>
+<div class="input">
+    <ngx-monaco-editor [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
+    <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
     <button (click)="sendSourceCode()">Compilieren und Ausführen</button>
-
-    <div class="output">
-        <pre>{{result}}</pre>
-    </div>
+</div>
+<div class="output">
+    <pre>{{result}}</pre>
+</div>
