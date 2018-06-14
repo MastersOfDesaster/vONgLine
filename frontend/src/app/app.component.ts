@@ -24,17 +24,24 @@ export class AppComponent {
 
   result: string;
   code = `was ist das für 1 code?
-  i bims 1 zal 💪 gönn dir 43!!!
-  i bims 1 isso lauch gönn dir yup!!!
+  i bims 1 zal lauch1 gönn dir 0!!!
+  i bims 1 zal lauch2 gönn dir 1!!!
+  i bims 1 zal erg gönn dir 0!!!
+  i bims 1 zal max gönn dir 0!!!
+  i bims 1 zal zähl gönn dir 0!!!
+  i bims 1 isso 🦄 gönn dir nope!!!
 
-  lauch gönn dir was ist das für 1 isweniga vong 💪, 44 her?
+  max gönn dir 10!!!
 
-  bist du lauch? yup
-      gieb "G pumpen du Lauch!" her?
-  real rap
-
-  bist du lauch? nope
-      gieb "Du bist k1 Lauch!" her?
+  #start
+  🦄 gönn dir was ist das für 1 isweniga vong zähl, max her?
+  bist du 🦄? yup
+      erg gönn dir was ist das für 1 sume vong lauch1, lauch2 her?
+      gieb "Fibonacci " + zähl +" :" + lauch1 + " + " + lauch2 + " = " + erg her?
+      lauch1 gönn dir lauch2!!!
+      lauch2 gönn dir erg!!!
+      zähl gönn dir was ist das für 1 sume vong zähl, 1 her?
+      g zu #start du larry!!!
   real rap
 1 n🍦r!!!`;
 

@@ -21,7 +21,7 @@ app.post("/vongline", (request, response) => {
 
     } else if (request.body !== null) {
         const filename: number = new Date().getTime();
-        log.debug(request.body);
+        log.debug(request.body.Code);
 
         fs.writeFile("tmp/" + filename + ".vsh", request.body.Code.toString(), (err) => {
             if (err) {
@@ -37,9 +37,11 @@ app.post("/vongline", (request, response) => {
                     exec("java -jar ./java/vong.jar tmp/" + filename + ".vch",
                     (errorR: any, stdoutR: any, stderrR: any) => {
                         log.info("vong.jar stdout: " + stdoutR);
-                        response.json(
-                            {StdoutC: stdoutC,
-                            StdoutR: stdoutR},
+                        response.json({
+                            SessionId: filename,
+                            StdoutC: stdoutC,
+                            StdoutR: stdoutR,
+                          },
                         );
                         if (stderrR) {
                             log.error("vong.jar stderr: " + stderrR);
