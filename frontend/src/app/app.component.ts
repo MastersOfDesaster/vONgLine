@@ -38,12 +38,6 @@ export class AppComponent {
   real rap
 1 n🍦r!!!`;
 
-  model: NgxEditorModel = {
-    value: this.code,
-    language: 'json',
-    uri: 'foo.json'
-  };
-
   ngOnInit() {
     this.updateOptions();
   }
@@ -54,11 +48,11 @@ export class AppComponent {
 
   sendSourceCode(){
       const req = this.http.post(url, {Code:this.code}).subscribe(res => {
-          this.result = JSON.stringify(res);
+          const buffer = JSON.parse(JSON.stringify(res));
+          this.result = buffer.StdoutC + "\n" + buffer.StdoutR;
         },
         err => {
           this.result = "Error";
-          console.log("Error occured");
         }
       );
   }
@@ -72,13 +66,5 @@ export class AppComponent {
     // let text = 'FOO';
     // let op = { identifier: id, range: range, text: text, forceMoveMarkers: true };
     // editor.executeEdits("my-source", [op]);
-  }
-}
-
-export class sourceCode {
-  Code: String;
-
-  constructor(C) {
-    this.Code = "";
   }
 };

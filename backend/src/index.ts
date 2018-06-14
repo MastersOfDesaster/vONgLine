@@ -30,21 +30,22 @@ app.post("/vongline", (request, response) => {
             log.info(filename + ".vsh saved");
 
             let exec = require("child_process").exec, child;
-            child =  exec("java -jar ./java/vongc.jar ./tmp/" + filename + ".vsh",
-            function(error: any, stdout: any, stderr: any) {
-                log.info("vongc.jar stdout: " + stdout);
-                if (stdout !== null) {
-                    child =  exec("java -jar ./java/vong.jar ./tmp/" + filename + ".vch",
-                    function(error: any, stdout: any, stderr: any) {
-                        log.info("vong.jar stdout: " + stdout);
+            child =  exec("java -jar ./java/vongc.jar tmp/" + filename + ".vsh",
+            function(error: any, stdoutC: any, stderr: any) {
+                log.info("vongc.jar stdout: " + stdoutC);
+                if (stdoutC !== null) {
+                    child =  exec("java -jar ./java/vong.jar tmp/" + filename + ".vch",
+                    function(errorR: any, stdoutR: any, stderrR: any) {
+                        log.info("vong.jar stdout: " + stdoutR);
                         response.json(
-                            {Response: stdout},
+                            {StdoutC: stdoutC,
+                            StdoutR: stdoutR},
                         );
-                        if (stderr) {
-                            log.error("vong.jar stderr: " + stderr);
+                        if (stderrR) {
+                            log.error("vong.jar stderr: " + stderrR);
                         }
-                        if (error !== null) {
-                            log.error("vong.jar exec error: " + error);
+                        if (errorR !== null) {
+                            log.error("vong.jar exec error: " + errorR);
                         }
                     });
                 }
