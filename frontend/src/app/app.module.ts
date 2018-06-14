@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NgxMonacoEditorConfig } from '../platform/editor/config';
 import { MonacoEditorModule } from '../platform/editor/editor.module';
@@ -53,6 +54,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     MonacoEditorModule.forRoot(monacoConfig)
   ],

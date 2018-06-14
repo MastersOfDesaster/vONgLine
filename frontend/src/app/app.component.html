@@ -5,6 +5,8 @@
         <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
     </div>
 
+    <button (click)="sendSourceCode()">Compilieren und Ausführen</button>
+
     <div class="output">
-        <pre>{{code | json}}</pre>
+        <pre>{{result | json}}</pre>
     </div>

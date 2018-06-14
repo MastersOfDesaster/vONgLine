@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { DiffEditorModel, NgxEditorModel } from '../platform/editor';
+import { HttpClient } from '@angular/common/http';
+
+const url:string = "http://localhost:3000/vongline/";
 
 @Component({
   selector: 'app-root',
@@ -7,22 +10,21 @@ import { DiffEditorModel, NgxEditorModel } from '../platform/editor';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private http: HttpClient){
+  }
+
   editor: any;
   showMultiple = false;
   toggleLanguage = true;
   options = {
     theme: 'vs-dark'
   };
-  code: string;
-  cssCode = `.my-class {
-  color: red;
-}`;
-  jsCode = `was ist das für 1 code?
-  i bims 1 zal 💪 gönn dir 0!!!
-  i bims 1 isso lauch gönn dir yup!!!
 
-  gieb "Gib d1 umfang vong bizeps her:" her?
-  💪 gönn dir 1gabe!!!
+  result: string;
+  code = `was ist das für 1 code?
+  i bims 1 zal 💪 gönn dir 43!!!
+  i bims 1 isso lauch gönn dir yup!!!
 
   lauch gönn dir was ist das für 1 isweniga vong 💪, 44 her?
 
@@ -35,25 +37,8 @@ export class AppComponent {
   real rap
 1 n🍦r!!!`;
 
-  originalModel: DiffEditorModel = {
-    code: 'heLLo world!',
-    language: 'text/plain'
-  };
-
-  modifiedModel: DiffEditorModel = {
-    code: 'hello orlando!',
-    language: 'text/plain'
-  };
-
-  jsonCode = [
-    '{',
-    '    "p1": "v3",',
-    '    "p2": false',
-    '}'
-  ].join('\n');
-
   model: NgxEditorModel = {
-    value: this.jsonCode,
+    value: this.code,
     language: 'json',
     uri: 'foo.json'
   };
@@ -63,20 +48,21 @@ export class AppComponent {
   }
 
   updateOptions() {
-    this.toggleLanguage = !this.toggleLanguage;
-    if (this.toggleLanguage) {
-      this.code = this.cssCode;
-      this.options = Object.assign({}, this.options, { language: 'java' });
-    } else {
-      this.code = this.jsCode;
       this.options = Object.assign({}, this.options, { language: 'javascript' });
-    }
-
   }
 
-  updateDiffModel(){
-    this.originalModel = Object.assign({}, this.originalModel, { code: 'abcd' });
-    this.modifiedModel = Object.assign({}, this.originalModel, { code: 'ABCD ef' });
+  sendSourceCode(){
+      this.result = this.code;
+      const sourceCode = JSON.parse('{"Code":"' + this.code +'"}');
+      this.result = sourceCode;
+      const req = this.http.post(url, sourceCode).subscribe(res => {
+          this.result = JSON.stringify(res);
+        },
+        err => {
+          this.result = "Error";
+          console.log("Error occured");
+        }
+      );
   }
 
   onInit(editor) {
