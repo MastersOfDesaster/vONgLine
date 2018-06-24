@@ -1,0 +1,17 @@
+frontend:
+  build: frontend/
+   ports:
+    - "443:443"
+backend:
+  build: backend/
+  ports:
+    - "3000:3000"
+  volumes:
+    - /tmp:/tmp
+sandbox:
+  image: java
+  volumes:
+    - /java:/java
+  volumes_from:
+    - backend
+    
