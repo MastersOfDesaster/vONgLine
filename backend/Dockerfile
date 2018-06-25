@@ -1,8 +1,8 @@
 FROM node:10-slim
 
-WORKDIR /backend
+WORKDIR /app
 
-COPY . /backend
+COPY . /app
 RUN npm install -g typescript
 RUN npm install  && tsc
 
