@@ -7,12 +7,12 @@ const app = express();
 // Configure REST Server
 app.use(express.json());
 
-app.use((req, res, next) => {
+app.use((req: any, res: any, next: any) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-app.post("/vongline", (request, response) => {
+app.post("/vongline", (request: any, response: any) => {
     log.debug("Request: " + request.url);
     if (!isNaN(request.params)) {
         response
@@ -30,14 +30,14 @@ app.post("/vongline", (request, response) => {
         log.debug("SessionId: " + sessionId);
         log.debug(request.body.Code);
 
-        fs.writeFile("tmp/" + sessionId + ".vsh", request.body.Code.toString(), (err) => {
+        fs.writeFile("tmp/vsh/" + sessionId + ".vsh", request.body.Code.toString(), (err: any) => {
             if (err) {
                 log.error(err.toString());
             }
             log.info(sessionId + ".vsh saved");
 
             const exec = require("child_process").exec;
-            exec("java -jar ./java/vongc.jar tmp/" + sessionId + ".vsh",
+            exec("docker exec vongline_compiler java -jar java/vongc.jar tmp/vsh/" + sessionId + ".vsh -o ../vch/" + sessionId + ".vch ",
             (errorC: any, stdoutC: any, stderrC: any) => {
                 log.info("vongc.jar stdout: " + stdoutC);
                 if (stdoutC !== null) {
