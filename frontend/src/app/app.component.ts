@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DiffEditorModel, NgxEditorModel } from '../platform/editor';
 import { HttpClient } from '@angular/common/http';
 
-const url:string = "http://localhost:3000/vongline";
+const url:string = "http://127.0.0.1:3000/";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +23,7 @@ export class AppComponent {
   };
 
   sessionId: number;
+  compiled = false;
 
   result: string;
   code = `was ist das für 1 code?
@@ -56,16 +57,30 @@ export class AppComponent {
   }
 
   sendSourceCode(){
-      const req = this.http.post(url, {SessionId: this.sessionId, Code:this.code}).subscribe(res => {
+      const req = this.http.post(url + "compile", {SessionId: this.sessionId, Code:this.code}).subscribe(res => {
           const buffer = JSON.parse(JSON.stringify(res));
-          this.result = buffer.StdoutC + "\n" + buffer.StdoutR;
+          this.result = buffer.StdoutC;
           this.sessionId = buffer.SessionId;
+          this.compiled = true;
         },
         err => {
           this.result = "Error";
         }
       );
   }
+
+  execSourceCode(){
+    const req = this.http.post(url + "exec", {SessionId: this.sessionId}).subscribe(res => {
+        const buffer = JSON.parse(JSON.stringify(res));
+        this.result = buffer.StdoutR;
+        this.sessionId = buffer.SessionId;
+      },
+      err => {
+        this.result = "Error";
+      }
+    );
+}
+
 
   onInit(editor) {
     this.editor = editor;

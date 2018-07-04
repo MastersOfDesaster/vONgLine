@@ -1,0 +1,28 @@
+FROM node
+
+RUN echo 'deb http://ftp.debian.org/debian jessie-backports main' >> /etc/apt/sources.list 
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y -t jessie-backports  openjdk-8-jre-headless
+
+WORKDIR /app
+
+COPY . /app
+
+RUN npm install -g typescript
+RUN npm install  && tsc
+
+WORKDIR /app/java
+
+RUN curl -s https://api.github.com/repos/MastersOfDesaster/Vongpiler/releases/latest \
+| grep "browser_download_url.*vongc.jar" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -qi -
+
+WORKDIR /app
+
+EXPOSE 3000
+CMD ["npm", "start"]
+
+
+RUN echo "if [ -e /var/run/docker.sock ]; then sudo chown node:node /var/run/docker.sock; fi" >> /home/node/.bashrc
