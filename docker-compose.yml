@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 
 services:
 
@@ -7,33 +7,29 @@ services:
     container_name: vongline_frontend
     ports:
       - "80:80"
+    external_links:
+      - backend
+
   backend:
     build: backend/
     container_name: vongline_backend
-    user: root
     privileged: true
-    tty: true 
-    stdin_open: true
     ports:
       - "3000:3000"
     volumes:
-      - "/tmp/vongline/vsh:/app/tmp/vsh"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-
+      - vsh:/app/tmp/vsh
+      - /var/run/docker.sock:/var/run/docker.sock
 
   compiler:
     build: compiler/
     container_name: vongline_compiler
     volumes:
-      - "/tmp/vongline/vch:/app/tmp/vch"
-    volumes_from:
-      - backend
+      - /tmp/vongline/vch:/app/tmp/vch
+      - vsh:/app/tmp/vsh:ro
     tty: true
-    stdin_open: true
+
   runtime:
     build: runtime/
-    container_name: vongline_runtime
-    volumes:
-      - "/tmp/vongline/vch:/app/tmp/vch"
-    tty: true
-      
+
+volumes:
+  vsh:

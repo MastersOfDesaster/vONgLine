@@ -5,7 +5,8 @@
 <div class="input">
     <ngx-monaco-editor [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
     <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
-    <button (click)="sendSourceCode()">Compilieren und Ausführen</button>
+    <button (click)="sendSourceCode()">Compilieren</button>
+    <button ng-model="button" *ngIf="compiled" (click)="execSourceCode()">Ausführen</button>
 </div>
 <div class="output">
     <pre>{{result}}</pre>
