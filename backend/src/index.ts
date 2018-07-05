@@ -1,8 +1,22 @@
 import express = require("express");
 import fs = require("fs");
+import https = require("https");
 import { log } from "./Logger";
 
+
+
 const app = express();
+
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/chain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
 
 // Configure REST Server
 app.use(express.json());
@@ -104,5 +118,9 @@ app.post("/exec", (request: any, response: any) => {
     }
 });
 
+const httpsServer = https.createServer(credentials, app);
+
 // Start REST server
-app.listen(8443);
+httpsServer.listen(8443, () => {
+	log.info('HTTPS REST Server running on port 8443');
+});
