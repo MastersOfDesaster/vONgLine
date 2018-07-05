@@ -2,7 +2,7 @@ import {Logger, LoggerInstance, LoggerOptions, transports} from "winston";
 
 export const log: LoggerInstance = new (Logger)(
     {
-        level: "debug",
+        level: "info",
         transports: [
             new transports.Console({
                 colorize: true,

@@ -9,9 +9,7 @@ RUN npm install --quiet
 
 COPY ./ /app/
 
-ARG configuration=production
-
-RUN npm run build --configuration $configuration
+RUN npm run build --environment=prod --prod
 
 FROM nginx:1.15
 
