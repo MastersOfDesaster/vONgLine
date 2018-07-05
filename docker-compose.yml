@@ -7,16 +7,17 @@ services:
     container_name: vongline_frontend
     ports:
       - "80:80"
-    external_links:
-      - backend
-
+    volumes:
+    - cert:/etc/letsencrypt/live
+    
   backend:
     build: backend/
     container_name: vongline_backend
     privileged: true
     ports:
-      - "3000:3000"
+      - "8443:8443"
     volumes:
+      - cert:/etc/letsencrypt/live:ro
       - vsh:/app/tmp/vsh
       - /var/run/docker.sock:/var/run/docker.sock
 
@@ -33,3 +34,4 @@ services:
 
 volumes:
   vsh:
+  cert:

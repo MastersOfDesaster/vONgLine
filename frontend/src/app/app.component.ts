@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DiffEditorModel, NgxEditorModel } from '../platform/editor';
 import { HttpClient } from '@angular/common/http';
 
-const url:string = "http://127.0.0.1:3000/";
+const url:string = "http://vongpiler:8443/";
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,6 @@ export class AppComponent {
 
   editor: any;
   showMultiple = false;
-  toggleLanguage = true;
   options = {
     theme: 'vs-dark'
   };
@@ -27,25 +26,7 @@ export class AppComponent {
 
   result: string;
   code = `was ist das für 1 code?
-  i bims 1 zal lauch1 gönn dir 0!!!
-  i bims 1 zal lauch2 gönn dir 1!!!
-  i bims 1 zal erg gönn dir 0!!!
-  i bims 1 zal max gönn dir 0!!!
-  i bims 1 zal zähl gönn dir 0!!!
-  i bims 1 isso 🦄 gönn dir nope!!!
-
-  max gönn dir 10!!!
-
-  #start
-  🦄 gönn dir was ist das für 1 isweniga vong zähl, max her?
-  bist du 🦄? yup
-      erg gönn dir was ist das für 1 sume vong lauch1, lauch2 her?
-      gieb "Fibonacci " + zähl +" :" + lauch1 + " + " + lauch2 + " = " + erg her?
-      lauch1 gönn dir lauch2!!!
-      lauch2 gönn dir erg!!!
-      zähl gönn dir was ist das für 1 sume vong zähl, 1 her?
-      g zu #start du larry!!!
-  real rap
+  halo i bims!!!
 1 n🍦r!!!`;
 
   ngOnInit() {
@@ -59,12 +40,12 @@ export class AppComponent {
   sendSourceCode(){
       const req = this.http.post(url + "compile", {SessionId: this.sessionId, Code:this.code}).subscribe(res => {
           const buffer = JSON.parse(JSON.stringify(res));
-          this.result = buffer.StdoutC;
+          this.result = buffer.StdoutC + "\n";
           this.sessionId = buffer.SessionId;
-          this.compiled = true;
+          this.compiled = buffer.Compiled;
         },
         err => {
-          this.result = "Error";
+          this.result = "Connection error: " + err;
         }
       );
   }
@@ -72,24 +53,16 @@ export class AppComponent {
   execSourceCode(){
     const req = this.http.post(url + "exec", {SessionId: this.sessionId}).subscribe(res => {
         const buffer = JSON.parse(JSON.stringify(res));
-        this.result = buffer.StdoutR;
+        this.result = buffer.StdoutR + "\n";
         this.sessionId = buffer.SessionId;
       },
       err => {
-        this.result = "Error";
+        this.result = "Connection error: " + err;
       }
     );
 }
 
-
   onInit(editor) {
     this.editor = editor;
-    console.log(editor);
-    // let line = editor.getPosition();
-    // let range = new monaco.Range(line.lineNumber, 1, line.lineNumber, 1);
-    // let id = { major: 1, minor: 1 };
-    // let text = 'FOO';
-    // let op = { identifier: id, range: range, text: text, forceMoveMarkers: true };
-    // editor.executeEdits("my-source", [op]);
   }
 };
