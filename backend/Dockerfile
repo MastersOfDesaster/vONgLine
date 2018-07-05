@@ -28,11 +28,11 @@ RUN npm install -g typescript
 RUN npm install  && tsc
 
 # Configure cron
-COPY crontab /etc/cron/crontab
+ADD crontab /etc/cron.d/delete-cron
 
 # Init cron
-RUN crontab /etc/cron/crontab
+RUN chmod 0644 /etc/cron.d/delete-cron
 
 EXPOSE 8443
 
-CMD ["sh","-c","crond -f && npm start && "]
+CMD ["sh","-c","cron && npm start && "]

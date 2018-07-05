@@ -11,9 +11,9 @@ RUN curl -s https://api.github.com/repos/MastersOfDesaster/Vongpiler/releases/la
 WORKDIR /app
 
 # Configure cron
-COPY crontab /etc/cron/crontab
+ADD crontab /etc/cron.d/delete-cron
 
 # Init cron
-RUN crontab /etc/cron/crontab
+RUN chmod 0644 /etc/cron.d/delete-cron
 
-CMD ["crond", "-f"]
+CMD ["cron"]
