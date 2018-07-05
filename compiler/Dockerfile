@@ -9,3 +9,11 @@ RUN curl -s https://api.github.com/repos/MastersOfDesaster/Vongpiler/releases/la
 | wget -qi -
 
 WORKDIR /app
+
+# Configure cron
+COPY crontab /etc/cron/crontab
+
+# Init cron
+RUN crontab /etc/cron/crontab
+
+CMD ["crond", "-f"]

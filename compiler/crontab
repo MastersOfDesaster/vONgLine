@@ -1,0 +1,1 @@
+* * * * * find /app/tmp/vch/* -mtime +1 -exec rm {} \;

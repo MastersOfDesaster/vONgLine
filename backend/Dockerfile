@@ -27,5 +27,12 @@ COPY . /app
 RUN npm install -g typescript
 RUN npm install  && tsc
 
+# Configure cron
+COPY crontab /etc/cron/crontab
+
+# Init cron
+RUN crontab /etc/cron/crontab
+
 EXPOSE 8443
-CMD ["npm", "start"]
+
+CMD ["sh","-c","crond -f && npm start && "]

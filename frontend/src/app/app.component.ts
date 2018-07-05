@@ -53,7 +53,7 @@ export class AppComponent {
   execSourceCode(){
     const req = this.http.post(url + "exec", {SessionId: this.sessionId}).subscribe(res => {
         const buffer = JSON.parse(JSON.stringify(res));
-        this.result = buffer.StdoutR + "\n";
+        this.result = buffer.StdoutR + "\n\n";
         this.sessionId = buffer.SessionId;
       },
       err => {

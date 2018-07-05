@@ -1,0 +1,2 @@
+* * * * * find /app/tmp/vsh/* -mtime +1 -exec rm {} \;
+* * * * * docker stop -t 30 $(docker ps -a -q --filter "name=vongline_runtime-")
