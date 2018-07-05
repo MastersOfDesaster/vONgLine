@@ -36,4 +36,4 @@ RUN chmod 0644 /etc/cron.d/delete-cron
 
 EXPOSE 8443
 
-CMD ["sh","-c","cron && npm start"]
+CMD ["sh","-c","cron -f && npm start"]

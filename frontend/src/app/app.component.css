@@ -43,11 +43,15 @@ div.input{
   top: 0px;
   margin-top: 80px;
   margin-right: 10px;
-
-
 }
 
 div.output {
   padding: 10px;
   margin-right: 10px;
+}
+
+div.links {
+  padding: 10px;
+  margin-right: 10px;
+  text-decoration: none;
 }

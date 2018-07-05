@@ -9,7 +9,7 @@ RUN npm install --quiet
 
 COPY ./ /app/
 
-RUN npm run build --environment=prod --prod
+RUN npm run build --env=prod --prod
 
 FROM nginx:1.15
 
