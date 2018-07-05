@@ -27,5 +27,5 @@ COPY . /app
 RUN npm install -g typescript
 RUN npm install  && tsc
 
-EXPOSE 3000
+EXPOSE 8443
 CMD ["npm", "start"]

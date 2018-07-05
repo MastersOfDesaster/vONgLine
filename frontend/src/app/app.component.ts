@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DiffEditorModel, NgxEditorModel } from '../platform/editor';
 import { HttpClient } from '@angular/common/http';
 
-const url:string = "http://vongpiler:8443/";
+const url:string = "https://vongpiler:8443/";
 
 @Component({
   selector: 'app-root',
@@ -45,7 +45,7 @@ export class AppComponent {
           this.compiled = buffer.Compiled;
         },
         err => {
-          this.result = "Connection error: " + err;
+          this.result = "Connection error: " + JSON.stringify(err);
         }
       );
   }
@@ -57,7 +57,7 @@ export class AppComponent {
         this.sessionId = buffer.SessionId;
       },
       err => {
-        this.result = "Connection error: " + err;
+        this.result = "Connection error: " + JSON.stringify(err);
       }
     );
 }
