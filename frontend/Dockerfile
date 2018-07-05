@@ -9,9 +9,9 @@ RUN npm install --quiet
 
 COPY ./ /app/
 
-ARG env=prod
+ARG configuration=production
 
-RUN npm run build
+RUN npm run build --configuration $configuration
 
 FROM nginx:1.15
 

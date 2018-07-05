@@ -10,10 +10,12 @@ RUN curl -s https://api.github.com/repos/MastersOfDesaster/Vongpiler/releases/la
 
 WORKDIR /app
 
-# Configure cron
+RUN apt-get update && apt-get -y install cron
+
+# Add crontab file in the cron directory
 ADD crontab /etc/cron.d/delete-cron
 
-# Init cron
+# Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/delete-cron
 
 CMD ["cron"]

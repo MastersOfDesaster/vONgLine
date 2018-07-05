@@ -7,7 +7,8 @@ RUN  apt-get install -y \
      ca-certificates \
      curl \
      gnupg2 \
-     software-properties-common
+     software-properties-common \
+     cron
 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 
@@ -27,12 +28,12 @@ COPY . /app
 RUN npm install -g typescript
 RUN npm install  && tsc
 
-# Configure cron
+# Add crontab file in the cron directory
 ADD crontab /etc/cron.d/delete-cron
 
-# Init cron
+# Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/delete-cron
 
 EXPOSE 8443
 
-CMD ["sh","-c","cron && npm start && "]
+CMD ["sh","-c","cron && npm start"]
