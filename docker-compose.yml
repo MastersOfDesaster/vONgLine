@@ -5,7 +5,7 @@ services:
   frontend:
     build: frontend/
     container_name: vongline_frontend
-    command: certbot certonly --authenticator standalone -m benjamin.albrecht@hs-bochum.de --agree-tos --rsa-key-size 4096 -d vongpiler.de -d www.vongpiler.de
+    command: certbot certonly --authenticator standalone -m -q benjamin.albrecht@hs-bochum.de --agree-tos --rsa-key-size 4096 -d vongpiler.de -d www.vongpiler.de
     ports:
       - 80:80
       - 443:433
