@@ -11,6 +11,7 @@ services:
     volumes:
     - /etc/letsencrypt:/etc/letsencrypt
     tty: true
+    restart: always
 
   backend:
     build: backend/
@@ -22,6 +23,7 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - vsh:/app/tmp/vsh
       - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
 
   compiler:
     build: compiler/
@@ -30,6 +32,7 @@ services:
       - /tmp/vongline/vch:/app/tmp/vch
       - vsh:/app/tmp/vsh:ro
     tty: true
+    restart: always
 
   runtime:
     build: runtime/
