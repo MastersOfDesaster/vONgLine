@@ -35,7 +35,7 @@
     "@types/jasmine": "^2.8.6",
     "@types/winston": "^2.3.8",
     "express": "^4.16.3",
-    "npm": "^6.1.0",
+    "npm": "^6.5.0",
     "tslint": "^5.9.1",
     "winston": "^2.4.1"
   }
