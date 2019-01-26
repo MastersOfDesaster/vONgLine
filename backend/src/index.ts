@@ -44,15 +44,15 @@ app.post("/compile", (request: any, response: any) => {
         log.debug("SessionId: " + sessionId);
         log.debug(request.body.Code);
 
-        fs.writeFile("tmp/vsh/" + sessionId + ".vsh", request.body.Code.toString(), (err: any) => {
+        fs.writeFile("./tmp/vsh/" + sessionId + ".vsh", request.body.Code.toString(), (err: any) => {
             if (err) {
                 log.error(err.toString());
             }
             log.info(sessionId + ".vsh saved");
 
             const exec = require("child_process").exec;
-            exec("docker exec vongline_compiler java -jar java/vongc.jar tmp/vsh/"
-            + sessionId + ".vsh -o tmp/vch/" + sessionId + ".vch ",
+            exec("docker exec vongline_compiler java -jar java/vongc.jar ./tmp/vsh/"
+            + sessionId + ".vsh -o ./tmp/vch/" + sessionId + ".vch ",
             (errorC: any, stdoutC: any, stderrC: any) => {
                 log.info("vongc.jar stdout: " + stdoutC);
 
@@ -92,7 +92,7 @@ app.post("/exec", (request: any, response: any) => {
 
           const exec = require("child_process").exec;
           exec("docker run --rm -v /tmp/vongline/vch:/app/tmp/vch:ro --name vongline_runtime-"
-          + sessionId + " vongline_runtime java -jar java/vong.jar tmp/vch/" + sessionId + ".vch",
+          + sessionId + " vongline_runtime java -jar java/vong.jar ./tmp/vch/" + sessionId + ".vch",
               (errorR: any, stdoutR: any, stderrR: any) => {
               log.info("vong.jar stdout: " + stdoutR);
               response.json({
