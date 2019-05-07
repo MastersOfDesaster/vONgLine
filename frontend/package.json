@@ -38,7 +38,7 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.8.3",
+    "@angular-devkit/build-angular": "^0.13.8",
     "@angular/cli": "^6.0.8",
     "@angular/compiler-cli": "^7.2.6",
     "@angular/language-service": "^6.0.0",
@@ -47,7 +47,7 @@
     "gulp-bump": "^2.7.0",
     "gulp-help": "^1.6.1",
     "gulp-if": "^2.0.2",
-    "gulp-sass": "^4.0.1",
+    "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.2",
     "gulp-util": "^3.0.8",
     "merge2": "^1.2.0",
